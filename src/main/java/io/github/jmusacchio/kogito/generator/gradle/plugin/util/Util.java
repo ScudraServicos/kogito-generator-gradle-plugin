@@ -62,7 +62,7 @@ public final class Util {
 
   public static SourceDirectorySet projectSourceDirectory(Project project) {
     SourceSetContainer sourceSetContainer = (SourceSetContainer) project.getProperties().get("sourceSets");
-    return sourceSetContainer.getByName("main").getAllJava();
+    return sourceSetContainer.getByName("main").getAllSource();
   }
 
   private static void populateURLsFromJarArtifact(

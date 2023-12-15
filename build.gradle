@@ -3,7 +3,7 @@ plugins {
     id 'signing'
 }
 
-group 'io.github.jmusacchio'
+group 'io.github.ScudraServicos'
 
 version "${kogitoVersion}"
 
@@ -53,19 +53,19 @@ publishing {
                 }
                 developers {
                     developer {
-                        id = 'jmusacchio'
-                        name = 'Juan Manuel Musacchio'
-                        email = 'juan.musacchio@gmail.com'
+                        id = 'thiago-farias'
+                        name = 'Thiago Farias'
+                        email = 'thiago.farias@ume.com.br'
                     }
                 }
                 scm {
-                    url = 'https://github.com/jmusacchio/kogito-generator-gradle-plugin'
-                    connection = 'scm:git:git://github.com/jmusacchio/kogito-generator-gradle-plugin.git'
-                    developerConnection = 'scm:git:ssh://git@github.com:jmusacchio/kogito-generator-gradle-plugin.git'
+                    url = 'https://github.com/ScudraServicos/kogito-generator-gradle-plugin'
+                    connection = 'scm:git:https://github.com/ScudraServicos/kogito-generator-gradle-plugin.git'
+                    developerConnection = 'scm:git:ssh://git@github.com:ScudraServicos/kogito-generator-gradle-plugin.git'
                 }
                 issueManagement {
                     system = 'GitHub'
-                    url = 'https://github.com/jmusacchio/kogito-generator-gradle-plugin/issues'
+                    url = 'ScudraServicos/kogito-generator-gradle-plugin/issues'
                 }
             }
         }
@@ -75,19 +75,22 @@ publishing {
 gradlePlugin {
     plugins {
         kogitoGenerator {
-            id = 'io.github.jmusacchio.kogito.generator'
+            id = 'io.github.ScudraServicos.kogito.generator'
             implementationClass = 'io.github.jmusacchio.kogito.generator.gradle.plugin.KogitoPlugin'
             displayName = 'Kogito Generator Gradle Plugin'
             description = project.description
+            tags.set([ 'kogito', 'bpmn', 'drl', 'dmn', 'optaPlanner'])
+            website = 'https://github.com/ScudraServicos/kogito-generator-gradle-plugin'
+            vcsUrl = 'https://github.com/ScudraServicos/kogito-generator-gradle-plugin.git'
         }
     }
 }
 
-pluginBundle {
-    website = 'https://github.com/jmusacchio/kogito-generator-gradle-plugin'
-    vcsUrl = 'https://github.com/jmusacchio/kogito-generator-gradle-plugin.git'
-    tags = [ 'kogito', 'bpmn', 'drl', 'dmn', 'optaPlanner']
-}
+// pluginBundle {
+//     website = 'https://github.com/ScudraServicos/kogito-generator-gradle-plugin'
+//     vcsUrl = 'https://github.com/ScudraServicos/kogito-generator-gradle-plugin.git'
+//     tags = [ 'kogito', 'bpmn', 'drl', 'dmn', 'optaPlanner']
+// }
 
 signing {
     required { isReleaseVersion && gradle.taskGraph.hasTask("publish") }
