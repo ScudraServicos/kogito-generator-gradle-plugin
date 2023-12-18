@@ -18,6 +18,7 @@ import java.net.URLClassLoader;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -41,8 +42,18 @@ public final class Util {
         populateURLsFromJarArtifact(project, artifact, kmoduleDeps);
       }
     }
-
-    return urls;
+    
+    // remove paths that does not exist
+    List<URL> filtered = new ArrayList<URL>();
+    urls.forEach(url -> {
+      try {
+        if(new File(url.toURI()).exists()) {
+          filtered.add(url);
+        }
+      } catch (Exception e) {
+      }
+    });
+    return filtered;
   }
 
   public static ClassLoader createProjectClassLoader(
